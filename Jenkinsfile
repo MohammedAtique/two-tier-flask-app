@@ -1,6 +1,7 @@
 pipeline {
   agent any
   stages {
+    
     stage("Code") {
       steps {
         git url: "https://github.com/MohammedAtique/two-tier-flask-app", branch: "master"
