@@ -15,12 +15,14 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId:"dockerHub", passwordVariable:"dockerHubPass", usernameVariable:"dockerHubUser")]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+          sh "docker tag two-tier-flask-app ${env.dockerHubUser}/two-tier-flask-app"
+          sh "docker push ${env.dockerHubUser}/two-tier-flask-app"
         }
       }
     }
     stage("Deploy") {
       steps {
-        echo "Deployment successfull"
+        sh "docker-compose down && docker-compose up -d"
       }
     }
   }
