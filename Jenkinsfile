@@ -24,9 +24,9 @@ pipeline {
     }
     stage("Deploy") {
       steps {
-        sh "echo 'MYSQL_HOST=mysql
-MYSQL_USER=luffy
-MYSQL_PASSWORD=1234
+        sh "echo 'MYSQL_HOST=mysql\
+MYSQL_USER=luffy\
+MYSQL_PASSWORD=1234\
 MYSQL_DB=mr' > .env"
         sh "docker-compose down && docker-compose up -d"
       }
